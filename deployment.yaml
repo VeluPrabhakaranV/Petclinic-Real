@@ -1,12 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: petclinic
   name: petclinic
 spec:
   selector:
     matchLabels:
       app: petclinic
-  replicas: 1 
+  replicas: 2 
   template: 
     metadata:
       labels:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
       - name: petclinic
-        image: sevenajay/petclinic7:latest
+        image: veluprabhakaranv/pet-clinic:latest
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
@@ -22,6 +23,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: petclinic
   name: petclinic
 spec:
   type: LoadBalancer
